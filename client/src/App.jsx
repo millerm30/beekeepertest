@@ -47,7 +47,7 @@ const App = () => {
 
   return (
     <div className="w-3/4 ml-auto mr-auto mt-4 md:w-1/2 lg:w-1/2">
-      <h1 className="text-center text-2xl font-bold">User Database Test</h1>
+      <h1 className="text-center text-2xl font-bold">User Database Testing</h1>
       <form
         onSubmit={addNewUser}
         className="flex flex-col bg-white p-6 rounded-lg border-2 shadow-md my-6"
