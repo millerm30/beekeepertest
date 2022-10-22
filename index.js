@@ -10,9 +10,9 @@ const path = require('path');
 app.use(cors());
 app.use(express.json());
 
-const static_dir = path.resolve(path.join(__dirname, '/build'));
+const static_dir = path.resolve(path.join(__dirname, 'client'));
 
-app.use('/', express.static(static_dir));
+app.use('/', express.static(static_dir + '/build/index.html'));
 
 app.listen(PORT, () => {
   console.log(`Server started on port ${PORT}`);
