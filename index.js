@@ -10,7 +10,7 @@ const path = require('path');
 app.use(cors());
 app.use(express.json());
 
-const static_dir = path.resolve(path.join(__dirname, 'client/build'));
+const static_dir = path.resolve(path.join(__dirname, '/build'));
 
 app.use('/', express.static(static_dir));
 
