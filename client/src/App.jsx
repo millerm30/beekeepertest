@@ -10,39 +10,36 @@ const App = () => {
 
   useEffect(() => {
     axios
-      .get('http://localhost:3010/users')
-      .then(res => {
+      .get("https://beekeepertest.herokuapp.com/users")
+      .then((res) => {
         setUsers(res.data);
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
-      }
-    );
+      });
   }, [newUser] );
 
   const addNewUser = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:3010/users", {
+      .post("https://beekeepertest.herokuapp.com/users", {
         first_name: firstName,
         last_name: lastName,
       })
       .then((res) => {
         setNewUser(newUser + 1);
         console.log(firstName, lastName);
-      }
-    );
+      });
     setFirstName("");
     setLastName("");
   };
 
   const deleteUser = (id) => {
     axios
-      .delete(`http://localhost:3010/users/${id}`)
+      .delete(`https://beekeepertest.herokuapp.com/users/${id}`)
       .then((res) => {
         setNewUser(newUser - 1);
-      }
-    );
+      });
   };
 
   return (
