@@ -18,17 +18,12 @@ app.listen(PORT, () => {
   console.log(`Server started on port ${PORT}`);
 });
 
-const pool = new Pool(`postgresql://${process.env.USER}:${process.env.PASSWORD}@${process.env.HOST}:${process.env.PORT}/${process.env.DATABASE}`);
-
-/*
-const pool = new Pool ({
-  user: process.env.user,
-  host: process.env.host,
-  database: process.env.database,
-  password: process.env.password,
-  port: process.env.port,
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false,
+  },
 });
-*/
 
 app.get("/users", async (req, res) => {
   try {
