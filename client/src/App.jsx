@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { TiDelete } from 'react-icons/ti';
 import Header from './components/Header';
+import AddUser from './components/AddUser';
 import Spinner from './components/Loading';
+import TableData from './components/TableData';
 
 const App = () => {
   const [ users, setUsers ] = useState([]);
@@ -58,72 +59,17 @@ const App = () => {
   return (
     <div className="w-3/4 ml-auto mr-auto mt-4 md:w-1/2 lg:w-1/2">
       <Header />
-      <form
-        onSubmit={addNewUser}
-        className="flex flex-col bg-white p-6 rounded-lg border-2 shadow-md my-6"
-      >
-        <label htmlFor="first_name" className="text-xl font-bold mt-4">
-          First Name:
-        </label>
-        <input
-          type="text"
-          name="first_name"
-          value={firstName}
-          onChange={(e) => setFirstName(e.target.value)}
-          className="border-2 border-gray-300 rounded-md p-2"
-          required
-          placeholder="Please enter your first name..."
-        />
-        <label htmlFor="last_name" className="text-xl font-bold mt-4">
-          Last Name:
-        </label>
-        <input
-          type="test"
-          name="last_name"
-          value={lastName}
-          onChange={(e) => setLastName(e.target.value)}
-          className="border-2 border-gray-300 rounded-md p-2"
-          required
-          placeholder="Please enter your last name..."
-        />
-        <button
-          type="submit"
-          className="w-1/3 bg-blue-500 text-white rounded-md p-2 mt-4 md:w-1/4 lg:w-1/4"
-        >
-          Add User
-        </button>
-      </form>
-
+      <AddUser
+        addNewUser={addNewUser}
+        firstName={firstName}
+        setFirstName={setFirstName}
+        lastName={lastName}
+        setLastName={setLastName}
+      />
       {!isLoading ? (
         <>
           {!users.length <= 0 ? (
-            <table className="w-full mt-4">
-              <thead className="border-b-2 border-blue-500">
-                <tr>
-                  <th>ID</th>
-                  <th>First Name</th>
-                  <th>Last Name</th>
-                  <th>Delete</th>
-                </tr>
-              </thead>
-              <tbody>
-                {users.map((user) => (
-                  <tr key={user.user_id} className="text-center">
-                    <td>{user.user_id}</td>
-                    <td>{user.first_name}</td>
-                    <td>{user.last_name}</td>
-                    <td className="flex justify-center">
-                      <TiDelete
-                        onClick={() => deleteUser(user.user_id)}
-                        className="text-red-500 cursor-pointer hover:text-red-700 text-xl"
-                      >
-                        Delete
-                      </TiDelete>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+            <TableData users={users} deleteUser={deleteUser} />
           ) : (
             <h1 className="text-center text-2xl font-bold mt-4">
               No Users Found!
