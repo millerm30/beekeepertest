@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import AddButton from './AddButton';
 
 const AddUser = ({addNewUser, firstName, setFirstName, lastName, setLastName}) => {
 
@@ -31,12 +32,9 @@ const AddUser = ({addNewUser, firstName, setFirstName, lastName, setLastName}) =
         required
         placeholder="Please enter your last name..."
       />
-      <button
-        type="submit"
-        className="w-1/3 bg-blue-500 text-white rounded-md p-2 mt-4 md:w-1/4 lg:w-1/4"
-      >
-        Add User
-      </button>
+      <AddButton 
+        title="Add User"
+      />
     </form>
   );
 }
